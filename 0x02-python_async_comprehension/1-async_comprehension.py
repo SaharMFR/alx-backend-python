@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+""" Defines coroutine `async_comprehension` """
 
 import asyncio
 from typing import List

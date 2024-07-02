@@ -39,15 +39,16 @@ class TestGithubOrgClient(unittest.TestCase):
         mock_json.return_value = json_payload
 
         with patch("client.GithubOrgClient._public_repos_url",
-                   new_callable=PropertyMock) as mock:
+                   new_callable=PropertyMock) as mock_public:
 
-            mock.return_value = "hello/world"
+            mock_public.return_value = "hello/world"
             test_class = GithubOrgClient("test")
             result = test_class.public_repos()
+
             check = [i["name"] for i in json_payload]
             self.assertEqual(result, check)
 
-            mock.assert_called_once()
+            mock_public.assert_called_once()
             mock_json.assert_called_once()
 
     @parameterized.expand([
